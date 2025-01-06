@@ -1,0 +1,33 @@
+---
+title: "Data_Visulaization"
+author: "Aswani Krishna P"
+date: "2025-01-06"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Install and load the required libraries
+
+```{r Load required libraries}
+library(tidyverse)
+library(repr)
+library(viridis)
+library(lubridate)
+library(zoo)
+```
+
+### Check the working directory
+
+```{r Get working directory}
+getwd()
+
+```
+### Read dataset
+```{r}
+plot1_df <- read_tsv("Lab1_scatterplot_set_1.txt",show_col_types = FALSE)
+plot1_df
+```
+
