@@ -37,6 +37,18 @@ str(plot1_df)
 
 ```
 
+# Calculate the mean and Standard Deviation
+```{r Mean and standard deviation}
+nrow(plot1_df)
+ncol(plot1_df)
+colnames(plot1_df)
+
+avg_set1_Xval <- mean(plot1_df$x_values)
+avg_set1_Yval <- mean(plot1_df$y_values)
+stddev_set1_Xval <- sd(plot1_df$x_values)
+stddev_set1_Yval <- sd(plot1_df$y_values)
+
+```
 
 ```{r Read dataset as table}
 
@@ -73,6 +85,8 @@ ggsave(plot = plot1_plot, filename = "Set_1.png", scale=2,device = "png", units 
 
 ```
 
+
+
 # Read Dataset2
 
 ```{r Dataset2}
@@ -85,6 +99,18 @@ str(plot2_df)
 
 ```
 
+# Calculate the mean and Standard Deviation
+```{r Mean and standard deviation}
+nrow(plot2_df)
+ncol(plot2_df)
+colnames(plot2_df)
+
+avg_set2_Xval <- mean(plot2_df$x_values)
+avg_set2_Yval <- mean(plot2_df$y_values)
+stddev_set2_Xval <- sd(plot2_df$x_values)
+stddev_set2_Yval <- sd(plot2_df$y_values)
+
+```
 
 ```{r Read dataset as table}
 
@@ -132,7 +158,18 @@ plot3_df <- read_tsv("Lab1_scatterplot_set_3.txt",show_col_types = FALSE)
 str(plot3_df)
 
 ```
+# Calculate the mean and Standard Deviation
+```{r Mean and standard deviation}
+nrow(plot3_df)
+ncol(plot3_df)
+colnames(plot3_df)
 
+avg_set3_Xval <- mean(plot3_df$x_values)
+avg_set3_Yval <- mean(plot3_df$y_values)
+stddev_set3_Xval <- sd(plot3_df$x_values)
+stddev_set3_Yval <- sd(plot3_df$y_values)
+
+```
 
 ```{r Read dataset as table}
 
@@ -181,7 +218,18 @@ plot4_df <- read_tsv("Lab1_scatterplot_set_4.txt",show_col_types = FALSE)
 str(plot4_df)
 
 ```
+# Calculate the mean and Standard Deviation
+```{r Mean and standard deviation}
+nrow(plot4_df)
+ncol(plot4_df)
+colnames(plot4_df)
 
+avg_set4_Xval <- mean(plot4_df$x_values)
+avg_set4_Yval <- mean(plot4_df$y_values)
+stddev_set4_Xval <- sd(plot4_df$x_values)
+stddev_set4_Yval <- sd(plot4_df$y_values)
+
+```
 
 ```{r Read dataset as table}
 
@@ -215,5 +263,21 @@ plot4_plot
 # Save plot
 
 ggsave(plot = plot4_plot, filename = "Set_4.png", scale=2,device = "png", units = c("cm"))
+
+```
+
+### Mean and std deviation for all the 4 datasets
+```{r}
+
+mean_stddev <- data.frame(
+                    datasets = c("Set1","Set2","Set3","Set4"),
+                    Average_X = c(avg_set1_Xval,avg_set2_Xval,avg_set3_Xval,avg_set4_Xval),
+                    Average_Y = c(avg_set1_Yval,avg_set2_Yval,avg_set3_Yval,avg_set4_Yval),
+                    StdDev_X = c(stddev_set1_Xval,stddev_set2_Xval,stddev_set3_Xval,stddev_set4_Xval),
+                    StdDev_Y = c(stddev_set1_Yval,stddev_set2_Yval,stddev_set3_Yval,stddev_set4_Yval)
+
+                    )
+
+mean_stddev
 
 ```
