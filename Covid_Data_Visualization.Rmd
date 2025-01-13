@@ -1,0 +1,64 @@
+---
+title: "Covid_Data_Visualization"
+author: "Aswani Krishna P"
+date: "2025-01-09"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Dataset: Encompasses Covid-19 cases and deaths, and hospitalizations from Covid-19, in the province of Ontario for the period from March 2020, until October 2022.
+
+# Download link: https://www.publichealthontario.ca/en/data-and-analysis/infectious-disease/covid-19-data-surveillance/covid-19-data-tool?tab=ageSex
+
+## Load packages
+```{r load packages, message=FALSE, warning=FALSE}
+# Packages to help tidy our data 
+library (tidyverse) 
+
+# Packages for the graphical analysis section 
+library (repr) 
+
+# packages used for working with/formatting dates in R 
+library (lubridate) 
+library (zoo)
+```
+
+### Load dataset
+```{r load dataset}
+covid_demographic_df <- read_csv("Ontario_age_and_sex_COVID-19_data_merged_filtered.csv")
+
+str(covid_demographic_df)
+
+# See the snippet of the dataframe
+tail(covid_demographic_df)
+
+head(covid_demographic_df, n=50)
+```
+### Format dataset
+```{r format dataset}
+# Parse the dataset to obtain total cases, total deaths and total hospitalization
+
+covid_demographic_df_total <- covid_demographic_df %>%
+                               select(from_date,to_date,geographic_area,age_group,total_cases,total_deaths,total_hospitalizations_count) %>%
+# Convert the age group into factors
+mutate(age_group = factor(age_group)) %>%
+rename(public_health_unit = geographic_area) %>%
+# Group the data to summarize
+group_by(public_health_unit) %>%
+# Generate percent cases for each age group within a PHU
+mutate(percent_cases = total_cases/sum(total_cases),
+       percent_deaths = total_deaths/sum(total_deaths),
+       percent_hospitalizations = total_hospitalizations_count/sum(total_hospitalizations_count))
+
+
+# Take a look at the different age demographics 
+levels(covid_demographic_df_total$age_group)
+```
+```{r}
+
+```
+
+
